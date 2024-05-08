@@ -4,7 +4,7 @@ using AufgabeCSV;
 
 
 
-liesCSV("C:\\Users\\ColakMurat\\Downloads\\TestDaten.csv");
+liesCSV("C:\\Users\\murat\\Downloads\\TestDaten.csv");
 
 
 
