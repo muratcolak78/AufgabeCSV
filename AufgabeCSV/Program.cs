@@ -12,7 +12,7 @@ liesCSV("C:\\Users\\murat\\Downloads\\TestDaten.csv");
 static List<data> liesCSV(string csvDosyaYolu)
 {
     
-    // Verileri depolamak için bir liste oluştur
+    // Verileri depolamak için bir liste oluştur..............................
 
     List<data> veriListesi = new List<data>();
 
