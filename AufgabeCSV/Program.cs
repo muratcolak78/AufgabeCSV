@@ -3,69 +3,77 @@ using AufgabeCSV;
 
 
 
+string path = "C:\\Users\\murat\\Downloads\\TestDaten.csv";
 
-liesCSV("C:\\Users\\murat\\Downloads\\TestDaten.csv");
+foreach (var kisi in liesCSV(path))
+{
+    Console.WriteLine(kisi);
+}
+Console.WriteLine("=======================");
+search("Adela", path);
 
 
 
 
-static List<data> liesCSV(string csvDosyaYolu)
+static List<data> liesCSV(string csvPath)
 {
     
-    // Verileri depolamak için bir liste oluştur..............................
+    // um data zu spreichern wird eine List ergestellt ..............................
 
-    List<data> veriListesi = new List<data>();
+    List<data> dateiList = new List<data>();
 
-    Console.WriteLine("veri listesi olusturuldu");
+   
     try
     {
-        Console.WriteLine("try bloguna girildi");
-        using (StreamReader reader = new StreamReader(csvDosyaYolu))
+       // mit dem StreamReader kann alle datei aus CSV gelesen wird..............
+
+        using (StreamReader reader = new StreamReader(csvPath))
         {
-            string[] veriler;
-            while (!reader.EndOfStream)
+            // erstellen wir eine string Array
+            
+            string[] data;
+
+            while (!reader.EndOfStream)                // lesung wird  bis ende dauern
             {
-                string satir = reader.ReadLine();
-                veriler = satir.Split(';');
+                string satir = reader.ReadLine();      // reihe wird in eine string variable hinzugefügt 
+                data = satir.Split(';');               // dann  wird die variable in die array hinzugefügt
                
-                if (veriler.Length < 15)
+                if (data.Length < 15)                  // um ein data objekt zu erstellen wird array zu den parameter hinzugefügt
                 {
-                    string sütun1 = veriler[0];
-                    string sütun2 = veriler[1];
-                    string sütun3 = veriler[2];
-                    string sütun4 = veriler[3];
-                    string sütun5 = veriler[4];
-                    string sütun6 = veriler[5];
-                    string sütun7 = veriler[6];
-                    string sütun8 = veriler[7];
-                    string sütun9 = veriler[8];
-                    string sütun10 = veriler[9];
-                    string sütun11 = veriler[10];
-                    string sütun12 = veriler[11];
-                    string sütun13 = veriler[12];
-                    string sütun14 = veriler[13];
+                    string sütun1 = data[0];
+                    string sütun2 = data[1];
+                    string sütun3 = data[2];
+                    string sütun4 = data[3];
+                    string sütun5 = data[4];
+                    string sütun6 = data[5];
+                    string sütun7 = data[6];
+                    string sütun8 = data[7];
+                    string sütun9 = data[8];
+                    string sütun10 = data[9];
+                    string sütun11 = data[10];
+                    string sütun12 = data[11];
+                    string sütun13 = data[12];
+                    string sütun14 = data[13];
 
                   
-                    // Verileri bir sınıf nesnesine yükle
+                    // dann wird ein object mit allen parametern ergestelt 
                     data yeniVeri = new data(sütun1, sütun2, sütun3, sütun4, sütun5, sütun6, sütun7, sütun8, sütun9, sütun10, sütun11, sütun12, sütun13, sütun14);
                     
-                    veriListesi.Add(yeniVeri);
+                    // und objekt wird in die DataiList hinzugefügt damit diese list wieder genutz werden kann
+                    dateiList.Add(yeniVeri);
                    
                 }
             }
         }
 
-        // Veri listesini kullanarak başka işlemler yapabilirsiniz
-        foreach (var veri in veriListesi)
-        {
-            Console.WriteLine(veri);
-        }
+        // mit der ForEach metode kann mann alle datai ausgeben.
+        
     }
     catch (Exception ex)
     {
         Console.WriteLine("CSV dosyası okunurken bir hata oluştu: " + ex.Message);
     }
-    return veriListesi;
+    return dateiList;
 }
 
 void search(string searchPerson,string csvDosyaYolu)
@@ -76,7 +84,7 @@ void search(string searchPerson,string csvDosyaYolu)
     {
         for (int i = 0; i < veriListesi.Count; i++)
         {
-            if (searchPerson.Equals(veriListesi[i].Vorname))
+            if (searchPerson==(veriListesi[i].Vorname))
             {
                 bulunaKisiler.Add(veriListesi[i]);
             }
@@ -89,9 +97,10 @@ void search(string searchPerson,string csvDosyaYolu)
 
     if (bulunaKisiler.Count>0)
     {
-        foreach (var vksi in bulunaKisiler)
+        Console.WriteLine(bulunaKisiler.Count+" kisi bulundu");
+        foreach (var kisi in bulunaKisiler)
         {
-
+            Console.WriteLine(kisi);
         }
     }else Console.WriteLine(" aranan kisi listede yok");
 
